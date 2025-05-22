@@ -1,0 +1,16 @@
+---
+import ValentineApp from '../components/ValentineApp.svelte';
+import config from '../config.json';
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dia dos Namorados</title>
+  </head>
+  <body class="bg-pink-100 min-h-screen flex items-center justify-center">
+    <ValentineApp client:load couple={config.couple} relationshipStartDate={config.relationshipStartDate} images={config.images} />
+  </body>
+</html>

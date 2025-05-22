@@ -1,0 +1,12 @@
+{
+    "couple": {
+        "name1": "João",
+        "name2": "Maria"
+    },
+    "relationshipStartDate": "2023-06-12",
+    "images": [
+        "../public/images/foto1.jpg",
+        "../public/images/foto2.jpg",
+        "../public/images/foto3.jpg"
+    ]
+}
