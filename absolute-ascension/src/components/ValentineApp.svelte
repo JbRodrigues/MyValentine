@@ -22,24 +22,27 @@
         const yearMs = 1000 * 60 * 60 * 24 * 365.25;
         const monthMs = yearMs / 12;
         const dayMs = 1000 * 60 * 60 * 24;
+        const hourMs = 1000 * 60 * 60;
+        const minuteMs = 1000 * 60;
+        const secondMs = 1000;
 
         const years = Math.floor(diff / yearMs);
         const months = Math.floor((diff % yearMs) / monthMs);
         const days = Math.floor((diff % monthMs) / dayMs);
+        const hours = Math.floor((diff % dayMs) / hourMs);
+        const minutes = Math.floor((diff % hourMs) / minuteMs);
+        const seconds = Math.floor((diff % minuteMs) / secondMs);
 
-        return { years, months, days };
+        return { years, months, days, hours, minutes, seconds };
     };
 
     const timeTogether = writable(calculateTimeTogether());
 
     // Atualiza diariamente
     onMount(() => {
-        const interval = setInterval(
-            () => {
-                timeTogether.set(calculateTimeTogether());
-            },
-            1000 * 60 * 60 * 24,
-        ); // 1x ao dia
+        const interval = setInterval(() => {
+            timeTogether.set(calculateTimeTogether());
+        }, 1000); // Atualiza a cada segundo
 
         return () => clearInterval(interval);
     });
@@ -52,6 +55,7 @@
             const heart = {
                 id: crypto.randomUUID?.() || Math.random(),
                 left: Math.random() * 100,
+                size: 16 + Math.random() * 24,
                 animationDuration: 3 + Math.random() * 2,
             };
             hearts = [...hearts, heart];
@@ -61,12 +65,12 @@
             }, heart.animationDuration * 1000);
         };
 
-        const interval = setInterval(createHeart, 500);
+        const interval = setInterval(createHeart, 400);
         return () => clearInterval(interval);
     });
 
     const heartStyle = (heart) =>
-        `left: ${heart.left}%; animation: fall ${heart.animationDuration}s linear;`;
+        `left: ${heart.left}vw; font-size: ${heart.size}px; animation: fall ${heart.animationDuration}s linear forwards;`;
 </script>
 
 <div class="relative w-full max-w-2xl mx-auto text-center">
@@ -74,20 +78,6 @@
     <h1 class="text-4xl font-bold text-pink-600 mb-4">
         {couple.name1} ❤️ {couple.name2}
     </h1>
-
-    <!-- Contador -->
-    {#each Object.entries($timeTogether) as [unit, value]}
-        {#if value > 0}
-            <p class="text-xl text-pink-800">
-                {value}
-                {unit === "years"
-                    ? " ano(s)"
-                    : unit === "months"
-                      ? " mês(es)"
-                      : " dia(s)"}
-            </p>
-        {/if}
-    {/each}
 
     <!-- Carrossel -->
     {#if images.length}
@@ -111,6 +101,36 @@
             </button>
         </div>
     {/if}
+
+    <h2 class="text-2xl font-bold text-pink-600 mb-4">
+        Eu te amo a exatamente
+    </h2>
+
+    <!-- Contador -->
+    {#each Object.entries($timeTogether) as [unit, value]}
+        {#if value > 0}
+            <p class="text-xl text-pink-800">
+                {value}
+                {unit === "years"
+                    ? " ano(s)"
+                    : unit === "months"
+                      ? " mês(es)"
+                      : unit === "days"
+                        ? " dia(s)"
+                        : unit === "hours"
+                          ? " hora(s)"
+                          : unit === "minutes"
+                            ? " minuto(s)"
+                            : " segundo(s)"}
+            </p>
+        {/if}
+    {/each}
+
+    <!-- Declaração de amor -->
+    <p class="mt-4 text-lg text-pink-700 italic">
+        Que cada dia ao seu lado seja mais um capítulo lindo da nossa história.
+        Te amo infinitamente!
+    </p>
 
     <!-- Corações caindo -->
     {#each hearts as heart (heart.id)}
@@ -136,5 +156,7 @@
         z-index: 50;
         animation-timing-function: linear;
         pointer-events: none;
+        will-change: transform;
+        border: 1px solid black;
     }
 </style>
