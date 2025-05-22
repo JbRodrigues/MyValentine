@@ -71,6 +71,30 @@
 
     const heartStyle = (heart) =>
         `left: ${heart.left}vw; font-size: ${heart.size}px; animation: fall ${heart.animationDuration}s linear forwards;`;
+
+    let audioElement;
+    let isPlaying = false;
+    let volume = 0.5;
+
+    let musicUrl = "https://youtu.be/xuiaL9HD2hw?si=xbK3AWK-wbNz3M4w"; // Substitua pelo link da música
+    let musicTitle = "Nossa Canção Especial"; // Nome da música
+
+    const togglePlay = () => {
+        if (!audioElement) return;
+
+        if (isPlaying) {
+            audioElement.pause();
+        } else {
+            audioElement.play();
+        }
+        isPlaying = !isPlaying;
+    };
+
+    onMount(() => {
+        if (audioElement) {
+            audioElement.volume = volume;
+        }
+    });
 </script>
 
 <div class="relative w-full max-w-2xl mx-auto text-center">
@@ -131,6 +155,37 @@
         Que cada dia ao seu lado seja mais um capítulo lindo da nossa história.
         Te amo infinitamente!
     </p>
+
+    <!-- Player de Música -->
+    <div
+        class="mt-6 bg-white p-4 rounded-lg shadow-md flex items-center justify-between space-x-4"
+    >
+        <audio bind:this={audioElement} src={musicUrl}></audio>
+
+        <button
+            class="text-pink-600 hover:text-pink-800 text-2xl"
+            on:click={togglePlay}
+        >
+            {isPlaying ? "⏸️" : "▶️"}
+        </button>
+
+        <div class="flex-1 text-left text-pink-800">
+            <p class="font-semibold">Música do casal</p>
+            <p class="text-sm italic">{musicTitle}</p>
+        </div>
+
+        <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            bind:value={volume}
+            on:input={() => {
+                if (audioElement) audioElement.volume = volume;
+            }}
+            class="w-24"
+        />
+    </div>
 
     <!-- Corações caindo -->
     {#each hearts as heart (heart.id)}
