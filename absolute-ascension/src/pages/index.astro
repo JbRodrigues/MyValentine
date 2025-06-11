@@ -1,9 +1,10 @@
 ---
-import ValentineApp from '../components/ValentineApp.svelte';
-import config from '../config.json';
+import ValentineApp from "../components/ValentineApp.svelte";
+import Hearts from "../components/Hearts.svelte";
+import config from "../config.json";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +12,17 @@ import config from '../config.json';
     <title>Dia dos Namorados</title>
   </head>
   <body class="bg-pink-100 min-h-screen flex items-center justify-center">
-    <ValentineApp client:load couple={config.couple} relationshipStartDate={config.relationshipStartDate} images={config.images} />
+    <ValentineApp
+      client:load
+      couple={config.couple}
+      relationshipStartDate={config.relationshipStartDate}
+      images={config.images}
+    />
+    <Hearts
+      client:load
+      couple={config.couple}
+      relationshipStartDate={config.relationshipStartDate}
+      images={config.images}
+    />
   </body>
 </html>
