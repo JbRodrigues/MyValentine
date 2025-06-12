@@ -4,8 +4,6 @@
     export let currentImage = 0;
     export let nextImage;
     export let prevImage;
-    console.log("Imagens recebidas:", images);
-    console.log("Imagem atual:", images[currentImage]);
 </script>
 
 <div
