@@ -1,11 +1,36 @@
 {
     "couple": {
-        "name1": "João",
-        "name2": "Maria"
+        "name1": "Julio",
+        "name2": "Angelita"
     },
     "images": [
-        "../public/images/foto1.jpg",
-        "../public/images/foto2.jpg",
-        "../public/images/foto3.jpg"
+        "/images/foto5.jpg",
+        "/images/foto6.jpg",
+        "/images/foto7.jpg",
+        "/images/foto8.jpg",
+        "/images/foto9.jpg",
+        "/images/foto10.jpg",
+        "/images/foto11.jpg",
+        "/images/foto12.jpg",
+        "/images/foto13.jpg",
+        "/images/foto15.jpg",
+        "/images/foto16.jpg",
+        "/images/foto17.jpg",
+        "/images/foto18.jpg",
+        "/images/foto19.jpg",
+        "/images/foto20.jpg",
+        "/images/foto21.jpg",
+        "/images/foto22.jpg",
+        "/images/foto23.jpg",
+        "/images/foto24.jpg",
+        "/images/foto25.jpg",
+        "/images/foto26.jpg",
+        "/images/foto27.jpg",
+        "/images/foto28.jpg",
+        "/images/foto29.jpg",
+        "/images/foto30.jpg",
+        "/images/foto31.jpg",
+        "/images/foto22.jpg",
+        "/images/foto33.jpg"
     ]
 }

@@ -56,13 +56,14 @@
         left: 0;
         width: 100vw;
         height: 100vh;
+        overflow: hidden;
         pointer-events: none;
         z-index: 0;
     }
 
     .falling-heart {
         position: absolute;
-        top: 0;
+        top: 10;
         will-change: transform, opacity;
     }
 

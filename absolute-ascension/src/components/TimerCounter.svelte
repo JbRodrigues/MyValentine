@@ -37,7 +37,7 @@
     });
 </script>
 
-<h2 class="text-2xl font-bold text-pink-600 mb-4">
+<h2 class="text-2xl font-bold text-pink-600 mb-2 mt-4">
     Eu te amo a exatamente
 </h2>
 

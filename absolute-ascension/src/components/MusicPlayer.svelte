@@ -1,6 +1,9 @@
 <script>
+    import { onMount } from "svelte";
+
     export let musicUrl;
     export let musicTitle;
+
     let audioElement;
     let isPlaying = false;
     let volume = 0.5;
@@ -18,6 +21,23 @@
     const updateVolume = () => {
         if (audioElement) audioElement.volume = volume;
     };
+
+    // Tenta autoplay quando o componente monta
+    onMount(() => {
+        if (audioElement) {
+            audioElement.volume = volume;
+
+            audioElement.play()
+                .then(() => {
+                    isPlaying = true;
+                    console.log("Música começou automaticamente ✅");
+                })
+                .catch((err) => {
+                    console.warn("Autoplay bloqueado pelo navegador 🚫:", err);
+                    isPlaying = false;
+                });
+        }
+    });
 </script>
 
 <div class="mt-6 bg-white p-4 rounded-lg shadow-md flex items-center justify-between space-x-4">
@@ -31,7 +51,7 @@
     </button>
 
     <div class="flex-1 text-left text-pink-800">
-        <p class="font-semibold">Música do casal</p>
+        <p class="font-semibold">Pearl Jam</p>
         <p class="text-sm italic">{musicTitle}</p>
     </div>
 

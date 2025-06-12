@@ -4,17 +4,21 @@
     export let currentImage = 0;
     export let nextImage;
     export let prevImage;
+    console.log("Imagens recebidas:", images);
+    console.log("Imagem atual:", images[currentImage]);
 </script>
 
-<div class="relative mt-6 overflow-hidden rounded-lg shadow-lg h-64">
+<div
+    class="relative mt-6 w-full max-w-2xl mx-auto aspect-[4/3] overflow-hidden rounded-lg shadow-lg"
+>
+    
     {#each images as image, index (index)}
         <img
             src={image}
             alt="Foto do casal"
-            class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700"
+            class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-700 bg-pink-100"
             class:opacity-100={index === currentImage}
             class:opacity-0={index !== currentImage}
-            transition:fade
         />
     {/each}
 
